@@ -20,16 +20,17 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(title="Paperhouse API", version="1.0.0", lifespan=lifespan)
 
-origins = [o.strip() for o in os.getenv("FRONTEND_ORIGIN", "http://localhost:5173").split(",") if o.strip()]
+origins = [
+    "http://localhost:5173", # For local development
+    "https://frontend-iota-nine-56.vercel.app", #
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "https://frontend-iota-nine-56.vercel.app/",   # exact URL, no trailing slash
-        "http://localhost:5173",         # local dev (adjust port)
-    ],
+    allow_origins=origins,
     allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=["*"], # Allows all methods (GET, POST, OPTIONS, etc.)
+    allow_headers=["*"], # Allows all headers
 )
 
 for r in (auth.router, products.router, cart.router, orders.router, admin.router):
