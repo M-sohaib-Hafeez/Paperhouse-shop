@@ -4,7 +4,7 @@ import { api, money } from "../api";
 import { useAuth } from "../auth.jsx";
 import { useCart } from "../cart.jsx";
 
-const TINTS = ["#E4EAFF", "#DDF3EA", "#FFE9D6", "#F3E3FA", "#FFF3C4", "#E1F0F7"];
+const TINTS = ["#E0E0E0", "#D9D9D9", "#E4E4E4", "#DCDCDC", "#E1E1E1", "#D6D6D6"];
 
 export default function Shop() {
   const [products, setProducts] = useState(null);

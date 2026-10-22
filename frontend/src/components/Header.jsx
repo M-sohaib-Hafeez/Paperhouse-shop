@@ -11,10 +11,12 @@ export default function Header() {
     <header className="header">
       <div className="header-inner">
         <Link to="/" className="brand">Paperhouse</Link>
-        <nav className="nav">
+        <nav className="nav nav-main" aria-label="Main">
           <NavLink to="/" end>Shop</NavLink>
           {user && <NavLink to="/orders">My orders</NavLink>}
           {user?.role === "admin" && <NavLink to="/admin">Admin</NavLink>}
+        </nav>
+        <nav className="nav nav-side" aria-label="Account">
           <NavLink to="/cart" className="cart-link">
             Cart
             {cart.count > 0 && <span className="badge">{cart.count}</span>}
