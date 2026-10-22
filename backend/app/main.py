@@ -23,7 +23,11 @@ app = FastAPI(title="Paperhouse API", version="1.0.0", lifespan=lifespan)
 origins = [o.strip() for o in os.getenv("FRONTEND_ORIGIN", "http://localhost:5173").split(",") if o.strip()]
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=[
+        "https://frontend-iota-nine-56.vercel.app/",   # exact URL, no trailing slash
+        "http://localhost:5173",         # local dev (adjust port)
+    ],
+    allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
