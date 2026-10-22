@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: paperhouse-api
+    runtime: python
+    rootDir: backend
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.3
+      - key: SECRET_KEY
+        generateValue: true
+      - key: FRONTEND_ORIGIN
+        sync: false   # set to your Vercel URL
+      - key: ADMIN_EMAIL
+        value: admin@shop.com
+      - key: ADMIN_PASSWORD
+        sync: false   # set your own admin password
+      - key: DATABASE_URL
+        sync: false   # optional: Postgres URL (see README)
